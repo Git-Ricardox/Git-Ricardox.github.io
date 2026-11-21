@@ -9,7 +9,7 @@ const root = document.documentElement, main = $('#main'), inp = $('#in'), logEl 
 const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
 const PAGES = ['about', 'projects', 'contact', 'files', 'legal', 'help'];
 const CMDS = ['help', 'ls', 'cd', 'cat', 'open', 'about', 'projects', 'contact', 'files', 'legal', 'theme', 'lang', 'holo', 'motion', 'clear', 'back'];
-let lastSlug = '', lastSel = '', yaw = 25, zoom = 1, hist = [], hi = 0, swapT = 0, loadedPath = location.pathname;
+let lastSlug = '', lastSel = '', yaw = 25, zoom = 1, hist = [], hi = 0, swapT = 0, loadedPath = location.pathname, armEl = null;
 
 /* ---------- location model: ROOT/<lang>/<route>/ ---------- */
 const cur = () => {
@@ -59,9 +59,10 @@ async function nav(url, push = true) {
     if (!nm) throw new Error('no main');
     if (push) history.pushState(null, '', url);              // before the swap: relative URLs in the new markup resolve against it
     loadedPath = location.pathname;
-    const keep = document.getElementById('arm-stage');        // keep the live robot-arm canvas across swaps
+    const cur = document.getElementById('arm-stage'); if (cur) armEl = cur;   // keep the live robot-arm canvas across swaps,
+    $$('[data-holo]', main).forEach(h => { try { h.__holo && h.__holo.destroy && h.__holo.destroy(); } catch (_) {} });  // free GPU contexts before dropping markup
     main.innerHTML = nm.innerHTML; main.dataset.route = nm.dataset.route;
-    const ns = document.getElementById('arm-stage'); if (keep && ns) ns.replaceWith(keep);
+    const ns = document.getElementById('arm-stage'); if (armEl && ns) ns.replaceWith(armEl);  // ...also via pages without a stage
     document.title = doc.title;
     enter();
     dispatchEvent(new Event('so:view'));

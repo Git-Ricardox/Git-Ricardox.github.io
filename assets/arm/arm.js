@@ -15,18 +15,15 @@
 const BASE = new URL('./', import.meta.url);
 const GLB_URL = new URL('arm6.glb', BASE).href;
 const POSTER_URL = new URL('poster.jpg', BASE).href;
-const THREE_URL = new URL('vendor/three-arm.min.js', BASE).href;
+const INDEX_URL = new URL('../../content/projects/index.json', BASE).href;
 
-const FADE_IN = 0.3;      // idle -> pick
-const FADE_CHAIN = 0.2;   // pick -> queued pick
-const FADE_OUT = 0.4;     // pick -> idle
+const SPEED = 2.0;        // pick clips play at 2x the baked Blender timing (5.2 s -> 2.6 s)
+const FADE_IN = 0.15;     // idle -> pick
+const FADE_CHAIN = 0.1;   // pick -> queued pick
+const FADE_OUT = 0.2;     // pick -> idle
+const MAX_DPR = 1.25;     // the stage is small; full retina costs 2-4x fill rate for little gain
 
-function webglOK() {
-  try {
-    const c = document.createElement('canvas');
-    return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl')));
-  } catch (e) { return false; }
-}
+import { three, hasWebGL, release } from '../js/gl.js';
 
 function mount(stage) {
   const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -41,10 +38,11 @@ function mount(stage) {
   // ---- state shared by all modes
   let count = 6;
   let wanted = null;          // selection received before the arm is loaded
+  let wantedCount = NaN;      // project count from so:select (else read from index.json)
 
   function onSelect(e) {
     const d = (e && e.detail) || {};
-    if (Number.isFinite(d.count)) setCount(d.count);
+    if (Number.isFinite(d.count)) { wantedCount = d.count; setCount(d.count); }
     if (Number.isFinite(d.index)) api.select(d.index);
   }
   let setCount = (n) => { count = Math.max(0, Math.min(6, n | 0)); };
@@ -68,7 +66,7 @@ function mount(stage) {
   }
 
   if (reduced) return poster('reduced-motion');
-  if (!webglOK()) return poster('no-webgl');
+  if (!hasWebGL()) return poster('no-webgl');
 
   stage.dataset.armState = 'idle-wait';
   api.mode = 'webgl';
@@ -92,7 +90,8 @@ function mount(stage) {
 
   async function load() {
     stage.dataset.armState = 'loading';
-    const T = await import(THREE_URL);
+    const [T, n] = await Promise.all([three(), fetch(INDEX_URL).then((r) => r.json()).then((j) => j.length).catch(() => 6)]);
+    if (!Number.isFinite(wantedCount)) setCount(n);
     const gltf = await new T.GLTFLoader().loadAsync(GLB_URL);
 
     const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
@@ -113,7 +112,7 @@ function mount(stage) {
     const key = new T.DirectionalLight(0xfff1e2, 3.6);
     key.position.set(-1.7, 2.8, 2.3);
     key.castShadow = true;
-    key.shadow.mapSize.set(1024, 1024);
+    key.shadow.mapSize.set(512, 512);
     const sc = key.shadow.camera;
     sc.left = -1.3; sc.right = 1.3; sc.top = 1.3; sc.bottom = -1.3; sc.near = 0.5; sc.far = 8;
     key.shadow.bias = -0.0004;
@@ -155,6 +154,7 @@ function mount(stage) {
       corners.push(new T.Vector3(0.62 * Math.cos(t), -0.07, 0.62 * Math.sin(t)));
       corners.push(new T.Vector3(0.42 * Math.cos(t), 0.95, 0.42 * Math.sin(t)));
     }
+    let dprCap = MAX_DPR;
     function fit() {
       const w = Math.max(1, stage.clientWidth), h = Math.max(1, stage.clientHeight);
       camera.aspect = w / h;
@@ -175,7 +175,7 @@ function mount(stage) {
       }
       camera.position.copy(center).addScaledVector(dir, hi);
       camera.lookAt(center);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap));
       renderer.setSize(w, h, false);
     }
     fit();
@@ -186,8 +186,8 @@ function mount(stage) {
     const act = {};
     for (const clip of gltf.animations) {
       const a = mixer.clipAction(clip);
-      if (clip.name === 'idle') { a.setLoop(T.LoopRepeat, Infinity); }
-      else { a.setLoop(T.LoopOnce, 1); a.clampWhenFinished = true; }
+      if (clip.name === 'idle') { a.setLoop(T.LoopRepeat, Infinity); a.timeScale = 1.5; }
+      else { a.setLoop(T.LoopOnce, 1); a.clampWhenFinished = true; a.timeScale = SPEED; }
       act[clip.name] = a;
     }
     let current = act.idle || null;
@@ -225,20 +225,51 @@ function mount(stage) {
     };
     announce('idle');
 
-    // ---- render loop (paused while off-screen / tab hidden)
-    let last = 0;
-    let running = false;
-    function frame() {
-      if (!running) return;
-      const now = performance.now();
-      mixer.update(Math.min((now - last) / 1000, 0.1));
-      last = now;
-      renderer.render(scene, camera);
-      requestAnimationFrame(frame);
+    // ---- adaptive quality: slow machine (weak GPU / software GL) -> drop shadows, then resolution,
+    //      then fall back to the poster so the page itself stays responsive
+    let level = 0, nS = 0, slow = 0, prevRaf = 0;
+    function tune(iv) {
+      if (++nS < 20 || iv > 250) return;           // skip warm-up (shader compile) and tab/scroll hiccups
+      slow = slow * 0.95 + (iv > 25 ? 0.05 : 0);   // page below ~40 fps for most of the last ~1 s
+      if (slow < 0.6) return;
+      slow = 0; nS = 0; level++;
+      stage.dataset.armQuality = String(level);
+      if (level === 1) { renderer.shadowMap.enabled = false; scene.traverse((o) => { if (o.material) o.material.needsUpdate = true; }); }
+      else if (level === 2) { dprCap = 0.75; fit(); }
+      else { dead = true; tickFn(false); release(renderer); canvas.remove(); poster('too-slow'); }
     }
-    tickFn = (on) => {
-      if (on && !running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
-      else if (!on) running = false;
+
+    // ---- render loop: exactly one rAF chain, parked while off-screen / tab hidden / detached
+    let last = 0, raf = 0, on = false, dead = false;
+    function frame(now) {
+      raf = 0;
+      if (!on || dead) return;
+      if (prevRaf) tune(now - prevRaf); prevRaf = now;   // page frame interval = real cost incl. GPU + compositing
+      if (now - last >= 32) {          // 30 fps cap: halves GPU/CPU load, motion still smooth at this size
+        mixer.update(Math.min((now - last) / 1000, 0.1));
+        last = now;
+        renderer.render(scene, camera);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    tickFn = (v) => {
+      on = v && stage.isConnected && !dead;
+      if (on && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
+      else if (!on && raf) { cancelAnimationFrame(raf); raf = 0; }
+      prevRaf = 0;
+    };
+    // GPU trouble (driver reset, too many contexts): show the poster instead of a dead black box
+    canvas.addEventListener('webglcontextlost', (e) => {
+      if (dead) return;
+      dead = true; tickFn(false); canvas.remove(); poster('context-lost');
+    });
+    // free the context on reload/leave right away (otherwise contexts pile up across reloads)
+    addEventListener('pagehide', () => { dead = true; tickFn(false); release(renderer); }, { once: true });
+    api.three = { renderer, scene, camera };   // test hook
+    api.bench = (n = 60) => {   // test hook: median ms per rendered frame incl. GPU (gl.finish)
+      const gl = renderer.getContext(), ts = [];
+      const px = new Uint8Array(4); for (let k = 0; k < n; k++) { const t0 = performance.now(); mixer.update(1 / 60); renderer.render(scene, camera); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); ts.push(performance.now() - t0); }
+      ts.sort((x, y) => x - y); return +ts[n >> 1].toFixed(2);
     };
     mixer.update(0);
     renderer.render(scene, camera);

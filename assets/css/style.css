@@ -42,7 +42,7 @@ button:hover b, a.btn:hover b { color: var(--on-signal); }
 main:focus-visible { outline: none; }
 main { overflow: auto; padding: var(--space-4) var(--space-4) var(--space-3); outline: none; scrollbar-color: var(--border-strong) var(--bg); }
 .view[hidden] { display: none; }
-.view { animation: enter .22s ease-out; max-width: 100%; }
+.view { animation: enter .14s ease-out; max-width: 100%; }
 @keyframes enter { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 h1 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0 0 var(--space-3); font-weight: var(--fw-head); }
 h1::after { content: ""; display: block; width: 4ch; height: 4px; margin-top: .45rem; background: var(--signal); }
@@ -59,7 +59,7 @@ h2 { font-size: var(--fs-h3); line-height: var(--lh-tight); margin: var(--space-
 /* ---------- boot / welcome ---------- */
 .hero { display: flex; gap: var(--space-4); align-items: flex-end; justify-content: space-between; flex-wrap: wrap; }
 .boot { display: grid; font-size: var(--fs-sm); color: var(--muted); margin-bottom: var(--space-3); }
-.boot span { display: block; opacity: 0; animation: line .3s ease-out forwards; animation-delay: calc(var(--i) * .22s); }
+.boot span { display: block; opacity: 0; animation: line .18s ease-out forwards; animation-delay: calc(var(--i) * .08s); }
 .boot b { color: var(--success); font-weight: var(--fw-head); }
 @keyframes line { to { opacity: 1; } }
 .sprout { color: var(--accent-2); font-size: var(--fs-sm); line-height: 1.15; margin: 0 var(--space-3) var(--space-3) 0; user-select: none; }
@@ -119,7 +119,7 @@ h2 { font-size: var(--fs-h3); line-height: var(--lh-tight); margin: var(--space-
 .stage { position: relative; height: 15rem; perspective: 720px; display: grid; place-items: center; overflow: hidden; touch-action: pan-y; cursor: grab; }
 .stage .ring { position: absolute; bottom: 1.4rem; width: 62%; height: 2.6rem; border: 1px dashed var(--accent-2); border-radius: 50%; opacity: .9; }
 .rot { transform-style: preserve-3d; transform: scale(var(--zoom, 1)) rotateX(-22deg) rotateY(calc(var(--yaw, 0) * 1deg)); transition: transform .12s ease-out; }
-.spin { transform-style: preserve-3d; animation: spin 22s linear infinite; }
+.spin { transform-style: preserve-3d; animation: spin 12s linear infinite; }
 .still .spin { animation-play-state: paused; }
 @keyframes spin { to { transform: rotateY(360deg); } }
 .cube { --W: calc(var(--w, 60) * 1px); --H: calc(var(--h, 60) * 1px); --D: calc(var(--d, 60) * 1px); transform-style: preserve-3d; width: 0; height: 0; position: relative; }

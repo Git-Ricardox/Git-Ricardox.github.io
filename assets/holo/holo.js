@@ -36,13 +36,11 @@ const CSS = `
 let cssDone = false;
 function injectCss() { if (cssDone) return; cssDone = true; const s = document.createElement('style'); s.textContent = CSS; document.head.append(s); }
 
-export function hasWebGL() {
-  try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; }
-}
+import { three, hasWebGL, release } from '../js/gl.js';
+export { hasWebGL };
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('calm');
 
-let threeP;
-const loadThree = () => (threeP ||= import('./vendor/three-holo.min.js'));
+const loadThree = three;
 
 /* ---------- fallback: PNG -> ASCII -> built-in ASCII ---------- */
 async function mountFallback(el, why, o) {
@@ -127,7 +125,7 @@ async function mountGL(el, o) {
     const r = await fetch(new URL(el.dataset.glb, document.baseURI)); if (!r.ok) throw new Error('HTTP ' + r.status);
     const buf = await r.arrayBuffer(); bytes = buf.byteLength;
     gltf = await new Promise((ok, no) => new T.GLTFLoader().parse(buf, '', ok, no));
-  } catch (err) { console.warn('[holo] model failed:', err); canvas.remove(); renderer.dispose(); return mountFallback(el, 'error', { ...o, canGL: false }); }
+  } catch (err) { console.warn('[holo] model failed:', err); canvas.remove(); release(renderer); return mountFallback(el, 'error', { ...o, canGL: false }); }
 
   const style = el.dataset.holoStyle || 'edges';
   let tris = 0;
@@ -157,30 +155,33 @@ async function mountGL(el, o) {
     renderer.setPixelRatio(dpr); renderer.setSize(w, h, false); cam.aspect = w / h;
     const dist = 5.4 * Math.max(1, 1 / cam.aspect * .9); cam.position.set(0, dist * .38, dist); cam.lookAt(0, 0, 0); cam.updateProjectionMatrix(); dirty = true;
   };
-  new ResizeObserver(resize).observe(stage); resize(); theme();
-  new MutationObserver(theme).observe(root, { attributes: true, attributeFilter: ['data-theme', 'class'] });
-  addEventListener('calm', () => (dirty = true));
+  const ro = new ResizeObserver(resize); ro.observe(stage); resize(); theme();
+  const mo = new MutationObserver(() => { theme(); kick(); }); mo.observe(root, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
+  const onCalm = () => { dirty = true; kick(); }; addEventListener('calm', onCalm);
 
   const hostVar = n => parseFloat(root.style.getPropertyValue(n));
   const active = () => alive && vis && !document.hidden && !(host && root.classList.contains('holo-off'));
   const frame = now => {
     raf = 0; if (!alive) return;
-    if (active()) {
+    if (!active()) return;                                   // parked: kick() restarts it
+    if (now - last < 31) { raf = requestAnimationFrame(frame); return; }   // ~30 fps is plenty for a slow spin
+    {
       const dt = Math.min(.1, (now - last) / 1000 || 0); last = now;
-      const still = host ? root.classList.contains('still') || root.classList.contains('calm') : S.still;
+      var still = host ? root.classList.contains('still') || root.classList.contains('calm') : S.still;
       if (host) { const y = hostVar('--yaw'), z = hostVar('--zoom'); if (y !== S.yaw || z !== S.zoom) { S.yaw = isNaN(y) ? 0 : y; S.zoom = isNaN(z) ? 1 : z; dirty = true; } }
-      if (!still) { S.spin += dt * (360 / 22); S.t += dt; dirty = true; }
+      if (!still) { S.spin += dt * (360 / 12); S.t += dt; dirty = true; }
       if (dirty) {
         pivot.rotation.y = (S.yaw + S.spin) * Math.PI / 180; pivot.scale.setScalar(base * S.zoom); U.t.value = S.t;
         renderer.render(scene, cam); dirty = false;
         // adaptive resolution: if < 24 fps over ~1 s at DPR>1, drop to DPR 1
         frames++; acc += dt; if (acc >= 1) { stats.fps = Math.round(frames / acc); frames = 0; acc = 0; if (stats.fps < 24 && dpr > 1) { dpr = 1; stats.dpr = 1; resize(); } }
       } else last = now;
-    } else last = now;
+      if (still && !dirty) return;                             // nothing moves: park until kick()
+    }
     raf = requestAnimationFrame(frame);
   };
   const kick = () => { if (!raf && alive) { last = performance.now(); raf = requestAnimationFrame(frame); } };
-  new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) kick(); }).observe(stage);
+  const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) kick(); }); io.observe(stage);
   document.addEventListener('visibilitychange', kick);
 
   // input
@@ -216,7 +217,12 @@ async function mountGL(el, o) {
   }
   inst.act = act; inst.kick = kick;
   inst.bench = n => { const gl = renderer.getContext(), px = new Uint8Array(4), t0 = performance.now(); for (let i = 0; i < n; i++) { pivot.rotation.y += .05; renderer.render(scene, cam); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); } return (performance.now() - t0) / n; }; // ms/frame incl. GPU sync
-  inst.destroy = () => { alive = false; cancelAnimationFrame(raf); renderer.dispose(); canvas.remove(); };
+  inst.destroy = () => {
+    if (!alive) return; alive = false; cancelAnimationFrame(raf); raf = 0;
+    ro.disconnect(); mo.disconnect(); io.disconnect(); removeEventListener('calm', onCalm); document.removeEventListener('visibilitychange', kick);
+    removeEventListener('pagehide', inst.destroy); release(renderer); canvas.remove();
+  };
+  addEventListener('pagehide', inst.destroy);                 // free the GPU context on reload/leave, not at GC time
   el.dataset.holoState = 'gl'; el.__holo = inst;
   el.dispatchEvent(new CustomEvent('holo:ready', { bubbles: true, detail: { tris: stats.tris, bytes } }));
   kick();
