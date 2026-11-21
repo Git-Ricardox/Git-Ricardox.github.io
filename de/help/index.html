@@ -15,11 +15,12 @@
 <meta property="og:url" content="https://git-ricardox.github.io/de/help/">
 <meta property="og:image" content="https://git-ricardox.github.io/assets/video-graphics/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0f1b2d">
+<meta name="theme-color" content="#101d16">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/tokens.css">
 <link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/plants.css">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tc-theme');if(t==='light')document.documentElement.dataset.theme='light';localStorage.setItem('tc-lang','de')}catch(e){}</script>
 </head>
 <body>
@@ -29,7 +30,11 @@
 <div class="term" id="term">
 
   <header class="bar">
-    <a class="ps1" href="../../de/" aria-label="Startseite"><span class="u">guest</span>@<b>simplyoverengineered</b>:<span class="cwd" id="cwd">~/help</span>$</a>
+    <a class="ps1" href="../../de/" aria-label="Startseite"><span class="u">guest</span>@<b>simply<span class="ov">over</span>engineered</b>:<span class="cwd" id="cwd">~/help</span>$</a>
+    <span class="hangers" aria-hidden="true">
+      <svg class="hang a plant" viewBox="0 0 72 70"><use href="../../assets/plants/sprite.svg#hang-a"/></svg>
+      <svg class="hang b plant" viewBox="0 0 84 70"><use href="../../assets/plants/sprite.svg#hang-b"/></svg>
+    </span>
     <span class="ctl">
       <a id="b-lang" class="btn" href="../../en/help/" hreflang="en" lang="en" aria-label="English" title="g">[EN|<b>DE</b>]</a>
       <button type="button" id="b-theme" class="js-only" aria-label="Theme" title="t">[theme: <b>dark</b>]</button>
@@ -74,6 +79,7 @@
 
   <div id="log" class="js-only" role="log" aria-live="polite" aria-label="Terminal output"></div>
   <form id="cmd" class="js-only" autocomplete="off">
+    <svg class="mascot plant" viewBox="0 0 32 36" aria-hidden="true" focusable="false"><use href="../../assets/plants/sprite.svg#mascot"/></svg>
     <label for="in" class="ps1">$</label>
     <input id="in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder="tippe help …">
     <span class="hint" aria-hidden="true">/ · ? · Esc</span>
@@ -89,7 +95,7 @@
     <button type="button" data-k="/" aria-label="Command line">/</button>
   </nav>
 
-  <footer class="grass" aria-hidden="true"><pre id="grass"></pre></footer>
+  <footer class="bed" id="bed" aria-hidden="true"></footer>
 </div>
 
 <dialog id="dlg" aria-label="Hilfe">
@@ -140,8 +146,8 @@
   </div>
 </template>
 
-<script src="../../assets/js/grass.js"></script>
 <script type="module" src="../../assets/js/app.js"></script>
+<script type="module" src="../../assets/js/plants.js"></script>
 <script type="module" src="../../assets/arm/arm.js"></script>
 </body>
 </html>

@@ -15,11 +15,12 @@
 <meta property="og:url" content="https://git-ricardox.github.io/en/">
 <meta property="og:image" content="https://git-ricardox.github.io/assets/video-graphics/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0f1b2d">
+<meta name="theme-color" content="#101d16">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/tokens.css">
 <link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/plants.css">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tc-theme');if(t==='light')document.documentElement.dataset.theme='light';localStorage.setItem('tc-lang','en')}catch(e){}</script>
 </head>
 <body>
@@ -29,7 +30,11 @@
 <div class="term" id="term">
 
   <header class="bar">
-    <a class="ps1" href="../en/" aria-label="Home"><span class="u">guest</span>@<b>simplyoverengineered</b>:<span class="cwd" id="cwd">~</span>$</a>
+    <a class="ps1" href="../en/" aria-label="Home"><span class="u">guest</span>@<b>simply<span class="ov">over</span>engineered</b>:<span class="cwd" id="cwd">~</span>$</a>
+    <span class="hangers" aria-hidden="true">
+      <svg class="hang a plant" viewBox="0 0 72 70"><use href="../assets/plants/sprite.svg#hang-a"/></svg>
+      <svg class="hang b plant" viewBox="0 0 84 70"><use href="../assets/plants/sprite.svg#hang-b"/></svg>
+    </span>
     <span class="ctl">
       <a id="b-lang" class="btn" href="../de/" hreflang="de" lang="de" aria-label="Deutsch" title="g">[<b>EN</b>|DE]</a>
       <button type="button" id="b-theme" class="js-only" aria-label="Theme" title="t">[theme: <b>dark</b>]</button>
@@ -42,13 +47,12 @@
       <div class="hero">
         <pre class="boot" aria-hidden="true"><span style="--i:0">[ <b>ok</b> ] sun.service ........... started</span>
 <span style="--i:1">[ <b>ok</b> ] moss.service .......... growing</span>
-<span style="--i:2">[ <b>ok</b> ] workshop.lights ....... on</span>
+<span style="--i:2">[ <b>ok</b> ] glasshouse.lights .... on</span>
 <span style="--i:3">[ <b>ok</b> ] solder.fumes ......... filtered</span></pre>
-        <pre class="sprout" aria-hidden="true">  .--.   .--.
- /    \ /    \
- \_.-' | '-._/
-       |
-<u>______</u>|<u>______</u></pre>
+        <div class="hero-plant" aria-hidden="true">
+          <svg class="foliage plant" viewBox="0 0 140 122"><use href="../assets/plants/sprite.svg#hero-leaves"/></svg>
+          <svg class="pot" viewBox="0 0 140 52"><use href="../assets/plants/sprite.svg#hero-pot"/></svg>
+        </div>
       </div>
       <h1 class="hello"><span class="pfx">&gt;</span> Welcome, maker.<span class="cursor" aria-hidden="true"></span></h1>
       <p class="prose">This is <b>simplyoverengineered</b> — everyday problems, solved far too carefully with ESP32, 3D printing and patience. Things get built properly here, documented honestly, and the files are shared openly. Pick a door below, or type <code>help</code>.</p>
@@ -69,6 +73,7 @@
 
   <div id="log" class="js-only" role="log" aria-live="polite" aria-label="Terminal output"></div>
   <form id="cmd" class="js-only" autocomplete="off">
+    <svg class="mascot plant" viewBox="0 0 32 36" aria-hidden="true" focusable="false"><use href="../assets/plants/sprite.svg#mascot"/></svg>
     <label for="in" class="ps1">$</label>
     <input id="in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder="type help …">
     <span class="hint" aria-hidden="true">/ · ? · Esc</span>
@@ -84,7 +89,7 @@
     <button type="button" data-k="/" aria-label="Command line">/</button>
   </nav>
 
-  <footer class="grass" aria-hidden="true"><pre id="grass"></pre></footer>
+  <footer class="bed" id="bed" aria-hidden="true"></footer>
 </div>
 
 <dialog id="dlg" aria-label="Help">
@@ -135,8 +140,8 @@
   </div>
 </template>
 
-<script src="../assets/js/grass.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/plants.js"></script>
 <script type="module" src="../assets/arm/arm.js"></script>
 </body>
 </html>

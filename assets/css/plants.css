@@ -1,0 +1,85 @@
+/* plants.css — everything botanical. Animations touch transform / opacity / stroke-dashoffset ONLY (no filter, blur, box-shadow, layout).
+   Base state (no animation) = fully grown, so reduced motion / .calm just show the finished plants.
+   Pause rules: .plant.off (IntersectionObserver, set by plants.js) and html.bgpause (tab hidden). Colours: --plant-* (tokens.css). */
+
+.plant.off, .plant.off *, .bgpause .plant, .bgpause .plant * { animation-play-state: paused !important; }
+
+/* ---------- edge vines (plants.js) ---------- */
+.vines { position: absolute; top: 0; bottom: 0; width: 34px; z-index: 6; pointer-events: none; }
+.vines.l { left: -17px; } .vines.r { right: -17px; }
+.vines svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.vines.r svg { transform: scaleX(-1); }
+.vp { fill: none; stroke: var(--plant-stem); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+.vl { transform-box: fill-box; transform-origin: 0 50%; }
+.vl.a { fill: var(--plant-leaf); } .vl.b { fill: var(--plant-leaf-2); }
+.vf { transform-box: fill-box; transform-origin: center; }
+.fb { fill: var(--plant-bloom); } .fc { fill: var(--plant-bloom-2); } .fp { fill: var(--plant-pot); } .fc2 { fill: var(--plant-bloom-2); }
+.vines.grow .vp { animation: vgrow 2.5s cubic-bezier(.35, .55, .3, 1) both; }
+.vines.grow .vl, .vines.grow .vf { animation: lpop .55s cubic-bezier(.2, 1.5, .4, 1) both; }
+@keyframes vgrow { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes lpop { from { transform: scale(0); } to { transform: scale(1); } }
+@media (max-width: 1230px) { .vines { width: 22px; } .vines.l { left: 0; } .vines.r { right: 0; } }
+
+/* ---------- hanging plants in the header ---------- */
+.bar { position: relative; z-index: 4; min-height: 4.25rem; }
+.hangers { flex: 1; min-width: 0; align-self: stretch; position: relative; overflow: hidden; margin: calc(var(--space-2) * -1) 0; container-type: inline-size; }
+.hang { position: absolute; top: 0; height: 66px; width: auto; aspect-ratio: 72 / 70; transform-origin: 50% 0; animation: sway 6.5s ease-in-out infinite alternate; will-change: transform; }
+.hang.a { left: 24%; }
+.hang.b { right: 10%; aspect-ratio: 84 / 70; animation-duration: 8s; animation-delay: -3s; }
+@container (max-width: 190px) { .hang.b { display: none; } .hang.a { left: calc(50% - 34px); } }
+@container (max-width: 80px) { .hang { display: none; } }
+@keyframes sway { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+@media (max-width: 700px) { .hangers { display: none; } .bar { min-height: 0; } }
+
+/* ---------- sprout mascot next to the prompt ---------- */
+#cmd .mascot { flex: none; width: 30px; height: 34px; margin: -4px 0 -4px; transform-origin: 50% 100%; animation: breathe-p 4.2s ease-in-out infinite; will-change: transform; transition: translate .25s; }
+#cmd:focus-within .mascot { translate: 0 -3px; animation-duration: 2.6s; }
+@keyframes breathe-p { 0%, 100% { transform: scale(1, 1) rotate(-1.5deg); } 50% { transform: scale(.97, 1.07) rotate(1.5deg); } }
+
+/* ---------- hero plant (home) ---------- */
+.hero-plant { --hw: 104px; position: relative; flex: none; width: calc(var(--hw) + 10px); height: calc(var(--hw) * 1.13); margin: 0 var(--space-3) 0 0; user-select: none; }
+.hero-plant svg { position: absolute; left: 5px; width: var(--hw); }
+.hero-plant .foliage { top: 0; height: calc(var(--hw) * .8714); transform-origin: 50% 96%; animation: hero-sway 7s ease-in-out infinite alternate; will-change: transform; }
+.hero-plant .pot { bottom: 0; height: calc(var(--hw) * .3714); }
+@keyframes hero-sway { from { transform: rotate(-1.8deg); } to { transform: rotate(1.8deg); } }
+@media (max-width: 760px) { .hero-plant { --hw: 84px; } }
+
+/* ---------- growth-stage plants (project list + plate) ---------- */
+.pl { width: 28px; height: 28px; flex: none; overflow: visible; transform-origin: 50% 100%; transition: transform .3s cubic-bezier(.3, 1.5, .5, 1); }
+#plist a .pl { position: absolute; left: .45rem; top: 50%; margin-top: -16px; width: 32px; height: 32px; }
+.list a:hover .pl, .list a:focus .pl { transform: scale(1.14) translateY(-1px); }
+.list a:focus .pl { --plant-leaf: var(--on-signal); --plant-leaf-2: var(--on-signal); --plant-stem: var(--on-signal); --plant-pot: var(--on-signal); --plant-pot-2: var(--on-signal);
+  --plant-bloom: var(--on-signal); --plant-bloom-2: var(--signal); --plant-soil: var(--on-signal); }
+.proj-head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-3); flex-wrap: wrap; }
+.proj-head h1 { margin-bottom: var(--space-3); min-width: 0; overflow-wrap: anywhere; }
+.plate { margin: 0 0 var(--space-3); padding: .45rem .9rem .35rem; background: var(--surface-2); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); text-align: center; }
+.plate .pl-lg { display: block; width: 58px; height: 58px; margin: 0 auto .15rem; }
+.plate figcaption { font-size: var(--fs-xs); color: var(--accent-3); letter-spacing: var(--ls-caps); text-transform: lowercase; font-variant-caps: all-small-caps; }
+.plate:hover .pl-lg { transform: scale(1.1); }
+
+/* ---------- planter bed (footer) ---------- */
+.bed { position: relative; height: 58px; flex: none; overflow: hidden; background: linear-gradient(to bottom, transparent 20%, color-mix(in srgb, var(--plant-leaf) 12%, transparent)), var(--bg-sunken);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+.bed::after { content: ""; position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; height: 10px; background: var(--plant-soil); border-top: 2px solid color-mix(in srgb, var(--plant-soil) 60%, var(--plant-ink)); }
+.tuft { position: absolute; left: 0; bottom: 8px; width: 100%; height: 46px; overflow: visible; transform-origin: 50% 100%; will-change: transform; }
+.tuft.t0 { z-index: 1; opacity: .6; animation: tsway 8.5s ease-in-out infinite alternate; }
+.tuft.t1 { z-index: 2; animation: tsway 6.5s ease-in-out -2s infinite alternate; }
+.tuft.t2 { z-index: 3; animation: tsway 5.2s ease-in-out -4s infinite alternate; }
+.g0 { fill: var(--plant-stem); } .g1 { fill: var(--plant-leaf); } .g2 { fill: var(--plant-leaf-2); }
+.fs { fill: none; stroke: var(--plant-stem); stroke-width: 1.3; stroke-linecap: round; }
+@keyframes tsway { from { transform: skewX(-2.2deg); } to { transform: skewX(2.2deg); } }
+@media (max-width: 760px) { .bed { height: 40px; } .tuft { height: 32px; } }
+@media (max-height: 520px) { .bed, .hangers { display: none; } }
+
+/* ---------- spores ---------- */
+.pollen { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; border-radius: inherit; }
+.pollen i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--plant-bloom-2); opacity: 0; animation: drift var(--t, 22s) linear var(--dl, 0s) infinite; will-change: transform, opacity; }
+.pollen i:nth-child(even) { background: var(--plant-leaf-2); width: 3px; height: 3px; }
+@keyframes drift { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 12% { opacity: .75; } 80% { opacity: .45; } 100% { transform: translate3d(var(--dx, 40px), -52vh, 0); opacity: 0; } }
+.term > main { position: relative; z-index: 2; }
+
+/* ---------- calm: static, fully grown ---------- */
+@media (prefers-reduced-motion: reduce) { .pollen { display: none; } .plant, .plant * { animation: none !important; } }
+.calm .pollen { display: none; }
+.calm .plant, .calm .plant * { animation: none !important; }
+@media print { .vines, .pollen, .hangers, .bed, .hero-plant, .mascot { display: none; } }

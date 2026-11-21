@@ -151,7 +151,7 @@ function mount(stage) {
     const corners = [];   // plinth rim (r .92) + arm envelope (r .5 up to y 1.0)
     for (let k = 0; k < 16; k++) {
       const t = (k / 16) * Math.PI * 2;
-      corners.push(new T.Vector3(0.62 * Math.cos(t), -0.07, 0.62 * Math.sin(t)));
+      corners.push(new T.Vector3(0.8 * Math.cos(t), -0.12, 0.8 * Math.sin(t)));
       corners.push(new T.Vector3(0.42 * Math.cos(t), 0.95, 0.42 * Math.sin(t)));
     }
     let dprCap = MAX_DPR;
