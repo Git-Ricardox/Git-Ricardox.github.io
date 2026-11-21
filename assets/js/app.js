@@ -1,7 +1,7 @@
-/* thoughtfullycomplicateded — CLI site layer (D20, from prototype D18). Plain ES module, no deps, no build.
+/* simplyoverengineered — CLI site layer (D20, from prototype D18). Plain ES module, no deps, no build.
    Every page is a real static file (/en/…, /de/…). This script only adds: keys, command line, theme, hologram
    hand-off, and "pjax" navigation (fetch the next static page, swap <main>, pushState). No JS = normal links. */
-const NAME = 'thoughtfullycomplicateded';
+const NAME = 'simplyoverengineered';
 const ROOT = new URL('../../', import.meta.url);                       // site root (…/assets/js/app.js -> …/)
 const HOLO = new URL('../holo/holo.js', import.meta.url);
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];

@@ -1,6 +1,6 @@
-# thoughtfullycomplicateded
+# simplyoverengineered
 
-Website for the *thoughtfullycomplicateded* workshop channel: everyday problems, over-engineered (ESP32, 3D printing).
+Website for the *simplyoverengineered* workshop channel: everyday problems, over-engineered (ESP32, 3D printing).
 Plain static files for **GitHub Pages**. No build step, no dependencies, no tracking.
 
 ```
@@ -26,7 +26,7 @@ Use a server, not `file://` (ES modules + `fetch`). The site is written for the 
 1. Create an empty GitHub repo, push `main`.
 2. Settings → Pages → Source: *Deploy from a branch* → `main` / `/ (root)`.
 3. Custom domain: rename `CNAME.example` to `CNAME` (one line, the domain), set the same domain in Settings → Pages, enable *Enforce HTTPS*, point DNS at GitHub. Details: `01-Aktiv/OverEngineered/website/REPO-SETUP.md` in the vault.
-4. Replace `https://thoughtfullycomplicateded.com` (canonical/hreflang/sitemap) if the domain differs — see "Changing the domain".
+4. Replace `https://simplyoverengineered.com` (canonical/hreflang/sitemap) if the domain differs — see "Changing the domain".
 
 Project-site URL (`user.github.io/<repo>/`) does **not** work: pages use absolute-from-root paths in `404.html` and the
 JS root detection assumes the site sits at `/`. Use a custom domain or a `<user>.github.io` repo.
@@ -41,7 +41,7 @@ JS root detection assumes the site sits at `/`. Use a custom domain or a `<user>
 
 ## Changing the domain
 
-`SITE` constant in `scaffold_pages.py`, then regenerate; or search/replace `thoughtfullycomplicateded.com` in `sitemap.xml`, `robots.txt`, `index.html`, `en/**`, `de/**`.
+`SITE` constant in `scaffold_pages.py`, then regenerate; or search/replace `simplyoverengineered.com` in `sitemap.xml`, `robots.txt`, `index.html`, `en/**`, `de/**`.
 
 ## Hologram
 
