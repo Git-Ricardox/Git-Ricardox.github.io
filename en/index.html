@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://git-ricardox.github.io/en/">
 <meta property="og:image" content="https://git-ricardox.github.io/assets/video-graphics/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#0f1b2d">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/tokens.css">
@@ -24,7 +24,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div role="status" style="background:#e8c872;color:#0b1220;font:600 .85rem/1.4 var(--font-mono,monospace);padding:.35rem 1rem;text-align:center">// work in progress: site under construction, content and legal pages are not final yet</div>
+<div class="wip" role="status">// work in progress: site under construction, content and legal pages are not final yet</div>
 
 <div class="term" id="term">
 
@@ -39,20 +39,30 @@
 
   <main id="main" tabindex="-1" data-lang="en" data-route="">
     <section class="view" id="v-start">
-      <pre class="boot" aria-hidden="true"><span style="--i:0">[ <b>ok</b> ] sun.service ........... started</span>
+      <div class="hero">
+        <pre class="boot" aria-hidden="true"><span style="--i:0">[ <b>ok</b> ] sun.service ........... started</span>
 <span style="--i:1">[ <b>ok</b> ] moss.service .......... growing</span>
 <span style="--i:2">[ <b>ok</b> ] workshop.lights ....... on</span>
 <span style="--i:3">[ <b>ok</b> ] solder.fumes ......... filtered</span></pre>
+        <pre class="sprout" aria-hidden="true">  .--.   .--.
+ /    \ /    \
+ \_.-' | '-._/
+       |
+<u>______</u>|<u>______</u></pre>
+      </div>
       <h1 class="hello"><span class="pfx">&gt;</span> Welcome, maker.<span class="cursor" aria-hidden="true"></span></h1>
       <p class="prose">This is <b>simplyoverengineered</b> — everyday problems, solved far too carefully with ESP32, 3D printing and patience. Things get built properly here, documented honestly, and the files are shared openly. Pick a door below, or type <code>help</code>.</p>
-      <ul class="list menu" data-list>
+      <div class="home-grid">
+        <div id="arm-stage" class="arm-stage" aria-hidden="true"></div>
+        <ul class="list menu" data-list>
         <li><a href="../en/about/"><span class="n">1</span><span class="nm">about</span><span class="d">who is tinkering here</span></a></li>
         <li><a href="../en/projects/"><span class="n">2</span><span class="nm">projects</span><span class="d">builds, with holograms</span></a></li>
         <li><a href="../en/contact/"><span class="n">3</span><span class="nm">contact</span><span class="d">mail, social, show your build</span></a></li>
         <li><a href="../en/files/"><span class="n">4</span><span class="nm">files</span><span class="d">models on Printables / Cults3D</span></a></li>
         <li><a href="../en/legal/"><span class="n">5</span><span class="nm">legal</span><span class="d">imprint, privacy, affiliate</span></a></li>
         <li><a href="../en/help/"><span class="n">6</span><span class="nm">help</span><span class="d">keys &amp; commands</span></a></li>
-      </ul>
+        </ul>
+      </div>
       <p class="tip">Keys: <kbd>↑</kbd><kbd>↓</kbd> choose · <kbd>Enter</kbd> open · <kbd>/</kbd> command line · <kbd>?</kbd> help</p>
     </section>
   </main>
@@ -127,5 +137,6 @@
 
 <script src="../assets/js/grass.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/arm/arm.js"></script>
 </body>
 </html>

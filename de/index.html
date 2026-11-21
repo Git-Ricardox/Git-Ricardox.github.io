@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://git-ricardox.github.io/de/">
 <meta property="og:image" content="https://git-ricardox.github.io/assets/video-graphics/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#0f1b2d">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/tokens.css">
@@ -24,7 +24,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt</a>
-<div role="status" style="background:#e8c872;color:#0b1220;font:600 .85rem/1.4 var(--font-mono,monospace);padding:.35rem 1rem;text-align:center">// in Arbeit: Seite im Aufbau, Inhalte und Rechtstexte sind noch nicht final</div>
+<div class="wip" role="status">// in Arbeit: Seite im Aufbau, Inhalte und Rechtstexte sind noch nicht final</div>
 
 <div class="term" id="term">
 
@@ -39,20 +39,30 @@
 
   <main id="main" tabindex="-1" data-lang="de" data-route="">
     <section class="view" id="v-start">
-      <pre class="boot" aria-hidden="true"><span style="--i:0">[ <b>ok</b> ] sun.service ........... started</span>
+      <div class="hero">
+        <pre class="boot" aria-hidden="true"><span style="--i:0">[ <b>ok</b> ] sun.service ........... started</span>
 <span style="--i:1">[ <b>ok</b> ] moss.service .......... growing</span>
 <span style="--i:2">[ <b>ok</b> ] workshop.lights ....... on</span>
 <span style="--i:3">[ <b>ok</b> ] solder.fumes ......... filtered</span></pre>
+        <pre class="sprout" aria-hidden="true">  .--.   .--.
+ /    \ /    \
+ \_.-' | '-._/
+       |
+<u>______</u>|<u>______</u></pre>
+      </div>
       <h1 class="hello"><span class="pfx">&gt;</span> Willkommen, Maker.<span class="cursor" aria-hidden="true"></span></h1>
       <p class="prose">Das hier ist <b>simplyoverengineered</b> — Alltagsprobleme, viel zu gründlich gelöst mit ESP32, 3D-Druck und Geduld. Hier wird ordentlich gebaut, ehrlich dokumentiert und offen geteilt. Such dir eine Tür aus oder tippe <code>help</code>.</p>
-      <ul class="list menu" data-list>
+      <div class="home-grid">
+        <div id="arm-stage" class="arm-stage" aria-hidden="true"></div>
+        <ul class="list menu" data-list>
         <li><a href="../de/about/"><span class="n">1</span><span class="nm">about</span><span class="d">wer hier bastelt</span></a></li>
         <li><a href="../de/projects/"><span class="n">2</span><span class="nm">projects</span><span class="d">Bauten, mit Hologrammen</span></a></li>
         <li><a href="../de/contact/"><span class="n">3</span><span class="nm">contact</span><span class="d">Mail, Social, zeig deinen Bau</span></a></li>
         <li><a href="../de/files/"><span class="n">4</span><span class="nm">files</span><span class="d">Modelle auf Printables / Cults3D</span></a></li>
         <li><a href="../de/legal/"><span class="n">5</span><span class="nm">legal</span><span class="d">Impressum, Datenschutz, Affiliate</span></a></li>
         <li><a href="../de/help/"><span class="n">6</span><span class="nm">help</span><span class="d">Tasten &amp; Befehle</span></a></li>
-      </ul>
+        </ul>
+      </div>
       <p class="tip">Tasten: <kbd>↑</kbd><kbd>↓</kbd> wählen · <kbd>Enter</kbd> öffnen · <kbd>/</kbd> Befehlszeile · <kbd>?</kbd> Hilfe</p>
     </section>
   </main>
@@ -127,5 +137,6 @@
 
 <script src="../assets/js/grass.js"></script>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/arm/arm.js"></script>
 </body>
 </html>

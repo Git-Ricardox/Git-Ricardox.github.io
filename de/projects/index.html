@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://git-ricardox.github.io/de/projects/">
 <meta property="og:image" content="https://git-ricardox.github.io/assets/video-graphics/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#0f1b2d">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/tokens.css">
@@ -24,7 +24,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt</a>
-<div role="status" style="background:#e8c872;color:#0b1220;font:600 .85rem/1.4 var(--font-mono,monospace);padding:.35rem 1rem;text-align:center">// in Arbeit: Seite im Aufbau, Inhalte und Rechtstexte sind noch nicht final</div>
+<div class="wip" role="status">// in Arbeit: Seite im Aufbau, Inhalte und Rechtstexte sind noch nicht final</div>
 
 <div class="term" id="term">
 
@@ -51,9 +51,12 @@
           <span class="sum">Meldet Post, ohne dass man die Treppe runter zum Kasten laufen muss.</span></li>
           </ul>
         </div>
-        <div class="box holo-box"><h2 class="t">HOLO <span id="pv-name">· sv08-haken</span></h2>
-          <div class="slot" data-holo data-holo-keys="host" data-glb="../../assets/models/sv08_3d_drucker.glb" data-poster="../../assets/models/sv08_3d_drucker.png" data-ascii="../../assets/models/sv08_3d_drucker.ascii.txt"></div>
-          <p class="cap"><kbd>←</kbd><kbd>→</kbd> drehen · <kbd>+</kbd><kbd>−</kbd> zoom · <kbd>Space</kbd> Drehung</p>
+        <div class="stack">
+          <div id="arm-stage" class="arm-stage" aria-hidden="true"></div>
+          <div class="box holo-box"><h2 class="t">HOLO <span id="pv-name">· sv08-haken</span></h2>
+            <div class="slot" data-holo data-holo-keys="host" data-glb="../../assets/models/sv08_3d_drucker.glb" data-poster="../../assets/models/sv08_3d_drucker.png" data-ascii="../../assets/models/sv08_3d_drucker.ascii.txt"></div>
+            <p class="cap"><kbd>←</kbd><kbd>→</kbd> drehen · <kbd>+</kbd><kbd>−</kbd> zoom · <kbd>Space</kbd> Drehung</p>
+          </div>
         </div>
         <p class="sumline" id="pv-sum" aria-live="polite">Ein wackelnder Garderobenhaken, eine 3-€-Lösung im Baumarkt und ein Drucker, der dafür viel zu gründlich kalibriert wird.</p>
       </div>
@@ -131,5 +134,6 @@
 
 <script src="../../assets/js/grass.js"></script>
 <script type="module" src="../../assets/js/app.js"></script>
+<script type="module" src="../../assets/arm/arm.js"></script>
 </body>
 </html>

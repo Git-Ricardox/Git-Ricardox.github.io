@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>arm.js demo</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; padding: 24px; background: #0f1b2d; color: #f2efe8; font: 15px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  h1 { font-size: 16px; margin: 0 0 4px; }
+  p { margin: 0 0 12px; color: #adb9cc; }
+  #arm-stage { width: min(960px, 100%); aspect-ratio: 16 / 10; border: 1px solid #26395a; border-radius: 6px; background: #142439; }
+  .row { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; align-items: center; }
+  button { font: inherit; padding: 6px 14px; background: #1d3250; color: #f2efe8; border: 1px solid #6f84a3; border-radius: 4px; cursor: pointer; }
+  button:hover, button:focus-visible { background: #f07a2a; color: #0f1b2d; border-color: #f07a2a; outline: none; }
+  #status { color: #ffc15a; }
+  video { width: min(960px, 100%); border-radius: 6px; display: block; margin-top: 16px; }
+</style>
+</head>
+<body>
+<h1>arm.js demo</h1>
+<p>Buttons (or ← / → keys) dispatch <code>so:select</code>; the arm plays <code>pick_N</code>, then returns to idle.</p>
+<div id="arm-stage"></div>
+<div class="row" id="btns"></div>
+<div class="row">clip: <span id="status">–</span> · mode: <span id="mode">–</span></div>
+<video id="hero" autoplay muted loop playsinline poster="poster.jpg">
+  <source src="hero.webm" type="video/webm">
+  <source src="hero.mp4" type="video/mp4">
+</video>
+<script>
+  const COUNT = 6;
+  let cur = 0;
+  function pick(i) {
+    cur = (i + COUNT) % COUNT;
+    window.dispatchEvent(new CustomEvent('so:select', { detail: { slug: 'demo-' + cur, index: cur, count: COUNT } }));
+  }
+  const btns = document.getElementById('btns');
+  for (let i = 0; i < COUNT; i++) {
+    const b = document.createElement('button');
+    b.textContent = i; b.id = 'b' + i; b.onclick = () => pick(i);
+    btns.appendChild(b);
+  }
+  addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') pick(cur + 1);
+    if (e.key === 'ArrowLeft') pick(cur - 1);
+  });
+  addEventListener('arm:clip', (e) => { document.getElementById('status').textContent = e.detail.clip; });
+  document.getElementById('mode').textContent = 'loading…';
+  setTimeout(() => { document.getElementById('mode').textContent = window.__arm ? window.__arm.mode : 'no stage'; }, 300);
+</script>
+<script type="module" src="./arm.js"></script>
+</body>
+</html>

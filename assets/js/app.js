@@ -9,7 +9,7 @@ const root = document.documentElement, main = $('#main'), inp = $('#in'), logEl 
 const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
 const PAGES = ['about', 'projects', 'contact', 'files', 'legal', 'help'];
 const CMDS = ['help', 'ls', 'cd', 'cat', 'open', 'about', 'projects', 'contact', 'files', 'legal', 'theme', 'lang', 'holo', 'motion', 'clear', 'back'];
-let lastSlug = '', yaw = 25, zoom = 1, hist = [], hi = 0, swapT = 0, loadedPath = location.pathname;
+let lastSlug = '', lastSel = '', yaw = 25, zoom = 1, hist = [], hi = 0, swapT = 0, loadedPath = location.pathname;
 
 /* ---------- location model: ROOT/<lang>/<route>/ ---------- */
 const cur = () => {
@@ -26,6 +26,15 @@ const slugsP = fetch(new URL('content/projects/index.json', ROOT)).then(r => r.j
 const projCache = {};
 const project = s => (projCache[s] ||= fetch(new URL(`content/projects/${s}.json`, ROOT)).then(r => r.json()));
 const valid = async () => ['', ...PAGES, ...(await slugsP).map(s => 'projects/' + s)];
+
+/* ---------- so:select — tells other widgets (e.g. the robot-arm stage) which project is highlighted/open ---------- */
+async function select(slug) {                                // detail: {slug, index (0-based, index.json order), count}
+  if (!slug || slug === lastSel) return;
+  lastSel = slug;
+  const all = await slugsP, i = all.indexOf(slug);
+  if (lastSel !== slug) return;                              // superseded while the index was loading
+  dispatchEvent(new CustomEvent('so:select', { detail: { slug, index: i, count: all.length } }));
+}
 
 /* ---------- output ---------- */
 function say(txt, cls) {
@@ -50,9 +59,12 @@ async function nav(url, push = true) {
     if (!nm) throw new Error('no main');
     if (push) history.pushState(null, '', url);              // before the swap: relative URLs in the new markup resolve against it
     loadedPath = location.pathname;
+    const keep = document.getElementById('arm-stage');        // keep the live robot-arm canvas across swaps
     main.innerHTML = nm.innerHTML; main.dataset.route = nm.dataset.route;
+    const ns = document.getElementById('arm-stage'); if (keep && ns) ns.replaceWith(keep);
     document.title = doc.title;
     enter();
+    dispatchEvent(new Event('so:view'));
   } catch (e) { location.href = url; }                       // anything odd: let the browser do a normal navigation
 }
 const go = r => nav(urlOf(lang(), r));
@@ -61,7 +73,7 @@ const back = () => (route() === '' ? say('already at ~', '') : go(parent(route()
 
 function enter() {                                           // runs after first load and after every swap
   const { lang: l, route: r } = cur();
-  root.lang = l;
+  root.lang = l; lastSel = '';                               // new view: announce the selection again (its DOM is new)
   $('#cwd').textContent = '~' + (r ? '/' + r : '');
   $('.ps1', $('.bar')).href = urlOf(l, '');
   $('#b-lang').href = urlOf(l === 'en' ? 'de' : 'en', r);
@@ -72,7 +84,7 @@ function enter() {                                           // runs after first
   const v = $('#v-project', main); if (v) holoVars(v);
   const l2 = list(), keep = document.activeElement === inp;  // command line keeps focus while you chain commands
   const pl = $('#plist', main);
-  if (r.startsWith('projects/')) lastSlug = r.split('/')[1];          // Esc returns to the project you came from
+  if (r.startsWith('projects/')) { lastSlug = r.split('/')[1]; select(lastSlug); }   // Esc returns to the project you came from
   if (pl && lastSlug) { const i = $$('li', pl).findIndex(li => li.dataset.slug === lastSlug); if (i >= 0) pl.dataset.i = i; }
   if (pl) preview($$('li', pl)[+pl.dataset.i || 0], true);
   if (!keep) { if (l2) focusItem(l2, +l2.dataset.i || 0); else main.focus({ preventScroll: true }); }
@@ -87,6 +99,7 @@ function focusItem(l, i, items = $$('a', l)) {
 function holoVars(el) { $$('.cube').forEach(c => ['w', 'h', 'd'].forEach(k => c.style.setProperty('--' + k, el ? el.dataset[k] : 60))); }
 function preview(li, first) {
   if (!li) return;
+  select(li.dataset.slug);
   holoVars(li); $('#pv-name').textContent = '· ' + $('.nm', li).textContent; $('#pv-sum').textContent = $('.sum', li).textContent;
   const slot = $('[data-holo]', main);
   if (slot && li.dataset.glb && slot.dataset.glb !== li.dataset.glb) {
