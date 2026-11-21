@@ -1,0 +1,82 @@
+{
+  "slug": "briefkasten-melder",
+  "video": "V3",
+  "datum": "2026-11-21",
+  "titel_en": "Mailbox sensor",
+  "titel_de": "Briefkasten-Melder",
+  "pillar": "ESP32",
+  "tag": "iot",
+  "status": "idea",
+  "dims_mm": [
+    70,
+    58,
+    70
+  ],
+  "holo": {
+    "glb": "briefkasten_sensor.glb",
+    "png": "briefkasten_sensor.png",
+    "ascii": "briefkasten_sensor.ascii.txt",
+    "label_en": "Mailbox sensor (simplified model)",
+    "label_de": "Briefkasten-Melder (vereinfachtes Modell)"
+  },
+  "video_info": {
+    "youtube_id": null,
+    "titel_en": "Is There Mail? I Built a Mailbox Sensor Nobody Asked For",
+    "dauer": null,
+    "status": "Idee/Konzept"
+  },
+  "files": {
+    "cults3d_url": null,
+    "printables_url": null,
+    "pwyw": true,
+    "github_url": null
+  },
+  "bom": [
+    {
+      "qty": 1,
+      "teil_en": "ESP32-C3 board (deep sleep)",
+      "teil_de": "ESP32-C3-Board (Deep-Sleep)",
+      "preis_eur": null,
+      "status": "tbd"
+    },
+    {
+      "qty": 1,
+      "teil_en": "Reed switch or ToF sensor",
+      "teil_de": "Reed-Kontakt oder ToF-Sensor",
+      "preis_eur": null,
+      "status": "tbd",
+      "hinweis_en": "decided during the build",
+      "hinweis_de": "wird beim Bau entschieden"
+    },
+    {
+      "qty": 1,
+      "teil_en": "Battery",
+      "teil_de": "Batterie",
+      "preis_eur": null,
+      "status": "tbd",
+      "hinweis_en": "runtime will be measured",
+      "hinweis_de": "Laufzeit wird gemessen"
+    },
+    {
+      "qty": 1,
+      "teil_en": "Printed enclosure",
+      "teil_de": "Gedrucktes Gehäuse",
+      "preis_eur": null,
+      "status": "tbd"
+    }
+  ],
+  "kurz_en": "Tells you when there is mail, without walking down the stairs to open the box.",
+  "kurz_de": "Meldet Post, ohne dass man die Treppe runter zum Kasten laufen muss.",
+  "beschreibung_en": "I walk down to the mailbox and it is empty. So the box should tell me when something arrived. Plan: an ESP32-C3 in deep sleep, a reed switch or time-of-flight sensor detecting the flap or the contents, and a push message via ntfy (open, self-hostable). Battery life will be measured as a series, not promised. The over-engineering level is a classifier: letter, flyer or parcel. Status: idea only. Nothing is bought or built; whether it may be mounted at the house still has to be clarified, otherwise a test wall or model mailbox is used.",
+  "beschreibung_de": "Ich laufe zum Briefkasten und er ist leer. Also soll der Kasten melden, wenn etwas angekommen ist. Plan: ein ESP32-C3 im Deep-Sleep, ein Reed-Kontakt oder Time-of-Flight-Sensor für Klappe oder Inhalt und eine Push-Nachricht über ntfy (offen, selbst hostbar). Die Batterielaufzeit wird als Messreihe erhoben, nicht versprochen. Die Übertreibungsstufe ist ein Klassifikator: Brief, Werbung oder Paket. Stand: nur Idee. Nichts gekauft oder gebaut; ob die Montage am Haus erlaubt ist, muss noch geklärt werden, sonst dient eine Testwand oder ein Modell-Briefkasten.",
+  "log": [
+    {
+      "datum": "2026-11-21",
+      "en": "Chosen as video 3: cheap parts, fast to build, can move up if the tram clock delivery is late.",
+      "de": "Als Video 3 gewählt: billige Teile, schnell gebaut, rückt vor, falls die Tram-Lieferung sich verzögert."
+    }
+  ],
+  "quellen": [
+    "00-Mindmap-Sketch.md V3 (Ast 3)"
+  ]
+}

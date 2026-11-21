@@ -1,0 +1,7 @@
+Pillar Icons (24px raster, 1.5px stroke)
+==================================================
+3D-Druck: [██░░] ESP32: [░██░] Server: [███░]
+Robotik: [░░██] Design: [█░█░] UI: [arrows/folder/file]
+==================================================
+Symbols: 3dprint esp32 server robot design arrow folder file terminal link theme lang
+

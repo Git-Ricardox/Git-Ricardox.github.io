@@ -1,0 +1,3 @@
+Model: tram_uhr
+Simplified procedural geometry (Primitives).
+Objects: 3

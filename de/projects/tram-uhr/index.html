@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tram-Abfahrtsuhr — thoughtfullycomplicateded</title>
+<meta name="description" content="Eine Wanduhr, die zeigt, wann die nächste Tram fährt: vorn Echtzeit-Abfahrten, hinten eine Quarz-Analoguhr.">
+<link rel="canonical" href="https://thoughtfullycomplicateded.com/de/projects/tram-uhr/">
+<link rel="alternate" hreflang="de" href="https://thoughtfullycomplicateded.com/de/projects/tram-uhr/">
+<link rel="alternate" hreflang="en" href="https://thoughtfullycomplicateded.com/en/projects/tram-uhr/">
+<link rel="alternate" hreflang="x-default" href="https://thoughtfullycomplicateded.com/en/projects/tram-uhr/">
+<meta property="og:title" content="Tram-Abfahrtsuhr — thoughtfullycomplicateded">
+<meta property="og:description" content="Eine Wanduhr, die zeigt, wann die nächste Tram fährt: vorn Echtzeit-Abfahrten, hinten eine Quarz-Analoguhr.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thoughtfullycomplicateded.com/de/projects/tram-uhr/">
+<meta property="og:image" content="https://thoughtfullycomplicateded.com/assets/video-graphics/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/tokens.css">
+<link rel="stylesheet" href="../../../assets/css/style.css">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tc-theme');if(t==='light')document.documentElement.dataset.theme='light';localStorage.setItem('tc-lang','de')}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+
+<div class="term" id="term">
+
+  <header class="bar">
+    <a class="ps1" href="../../../de/" aria-label="Startseite"><span class="u">guest</span>@<b>thoughtfullycomplicateded</b>:<span class="cwd" id="cwd">~/projects/tram-uhr</span>$</a>
+    <span class="ctl">
+      <a id="b-lang" class="btn" href="../../../en/projects/tram-uhr/" hreflang="en" lang="en" aria-label="English" title="g">[EN|<b>DE</b>]</a>
+      <button type="button" id="b-theme" class="js-only" aria-label="Theme" title="t">[theme: <b>dark</b>]</button>
+      <a id="b-help" class="btn" href="../../../de/help/" aria-label="Hilfe" title="?">[?]</a>
+    </span>
+  </header>
+
+  <main id="main" tabindex="-1" data-lang="de" data-route="projects/tram-uhr">
+    <section class="view" id="v-project" data-slug="tram-uhr" data-w="106" data-h="53" data-d="80">
+      <h1><span class="pfx">#</span> Tram-Abfahrtsuhr</h1>
+      <p class="meta"><span class="chip">clock</span><span class="chip">ESP32</span> Status: Entwurf · V2 · 2026-11-10</p>
+      <div class="split proj-top">
+        <div class="box holo-box"><h2 class="t">HOLO</h2>
+          <div class="slot" data-holo data-holo-keys="host" data-glb="../../../assets/models/tram_uhr.glb" data-poster="../../../assets/models/tram_uhr.png" data-ascii="../../../assets/models/tram_uhr.ascii.txt"></div>
+          <p class="cap"><kbd>←</kbd><kbd>→</kbd> drehen · Tram-Abfahrtsuhr (vereinfachtes Modell)</p>
+        </div>
+        <div class="prose"><p id="pj-sum">Ein Wandgerät (318 × 160 × 80 mm) für Rostock, Haltestelle Kabutzenhof. Vorn ein 7&quot;-Display mit Echtzeit-Abfahrten aus der VMV-EFA-Schnittstelle (Haltestelle de:13003:804, Linien 1 und 5, Abruf alle 30 s, rotes „+N&quot; bei Verspätung, Ausfälle durchgestrichen). Hinten eine Quarz-Analoguhr. Das Gehäuse besteht aus drei gedruckten Teilen ohne Kleben: Gehäuse mit Rippen als Nut/Feder für Display und Zifferblatt, Wandblock mit Schwalbenschwanz und Rastnoppen, Wandplatte (zwei Senkschrauben 4 mm). Von oben einschieben, nach oben abziehen. Stand: nur Entwurf. Nichts gedruckt, Firmware ungetestet, Board-Maße am gelieferten Gerät noch zu messen. Jede EFA-Stadt lässt sich portieren.</p></div>
+      </div>
+      <h2><span class="pfx">##</span> video</h2>
+      <div class="ph video"><span>Video noch nicht veröffentlicht · Stand: Idee/Konzept</span></div>
+      <p class="muted">Arbeitstitel: <i>My Tram Left 20 Seconds Early. So I Built a Wall Clock That Knows.</i></p>
+      <h2><span class="pfx">##</span> BOM</h2>
+      <table class="bom"><thead><tr><th>qty</th><th>Teil</th><th>€</th><th>Status</th></tr></thead>
+        <tbody><tr><td>1</td><td><a href="https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/jingcai-esp32-8048s070c-7-inch-tft-lcd-display-800*480-pixels-with-touchscreen-esp32-s3" rel="noopener">7&quot;-Komplettboard ESP32-8048S070C (ESP32-S3, 800×480)</a></td><td>37,25</td><td>belegt</td></tr><tr><td>1</td><td><a href="https://agelektronik.de/906-uhr-werke-funkanalogquarz" rel="noopener">Quarz-Uhrwerk + Zeiger</a></td><td>8,91</td><td>belegt</td></tr><tr><td>1</td><td><a href="https://agelektronik.de/1059-usb-" rel="noopener">USB-C-Buchse/Kabel</a></td><td>2,50</td><td>belegt</td></tr><tr><td>1</td><td>Kleinteile (Schrauben, Filament) <span class="muted">(lokal beschafft, ohne Shop-Referenz)</span></td><td>8,00</td><td>geschätzt</td></tr></tbody></table>
+      <p class="muted">Summe: 48,66 € belegt, 8,00 € geschätzt (ohne vorhandene Teile; Preise geprüft 2026-11-20).</p>
+      <h2><span class="pfx">##</span> Dateien</h2>
+      <p class="muted">Noch nicht veröffentlicht. Die Dateien kommen auf Cults3D / Printables (Preis frei wählbar), sobald der Bau funktioniert.</p>
+      <h2><span class="pfx">##</span> build-log</h2>
+      <dl class="log"><dt>2026-11-10</dt><dd>Entwurf: 3-teiliges Gehäuse, Board und Datenquelle gewählt. Nichts gedruckt, Firmware ungetestet.</dd><dt>2026-11-19</dt><dd>Haltestelle geprüft: Kabutzenhof ist primär ein Fähranleger (RSAG); die Fähre fährt täglich, Abfahrten sind also nicht auf Abende beschränkt.</dd><dt>2026-11-20</dt><dd>Teilepreise gegen Shops geprüft: 48,66 € belegt, 8,00 € geschätzt.</dd></dl>
+      <p class="tip"><kbd>Esc</kbd> zurück zur Liste · <kbd>j</kbd><kbd>k</kbd> scroll</p>
+    </section>
+  </main>
+
+  <div id="log" class="js-only" role="log" aria-live="polite" aria-label="Terminal output"></div>
+  <form id="cmd" class="js-only" autocomplete="off">
+    <label for="in" class="ps1">$</label>
+    <input id="in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder="tippe help …">
+    <span class="hint" aria-hidden="true">/ · ? · Esc</span>
+  </form>
+
+  <nav class="pad js-only" aria-label="Touch keys">
+    <button type="button" data-k="ArrowLeft" aria-label="Left">←</button>
+    <button type="button" data-k="ArrowUp" aria-label="Up">↑</button>
+    <button type="button" data-k="ArrowDown" aria-label="Down">↓</button>
+    <button type="button" data-k="ArrowRight" aria-label="Right">→</button>
+    <button type="button" data-k="Enter" class="wide" aria-label="Enter">⏎</button>
+    <button type="button" data-k="Escape" aria-label="Back">esc</button>
+    <button type="button" data-k="/" aria-label="Command line">/</button>
+  </nav>
+
+  <footer class="grass" aria-hidden="true"><pre id="grass"></pre></footer>
+</div>
+
+<dialog id="dlg" aria-label="Hilfe">
+  <div class="dlg-h"><b>? help</b><button type="button" id="dlg-x" aria-label="Schließen">[esc]</button></div>
+  <div id="dlg-body"><div class="keys">
+        <table>
+          <caption>Tasten</caption>
+          <tbody>
+            <tr><th><kbd>↑</kbd> <kbd>↓</kbd> <kbd>j</kbd> <kbd>k</kbd></th><td>wählen / scrollen</td></tr>
+            <tr><th><kbd>←</kbd> <kbd>→</kbd> <kbd>h</kbd> <kbd>l</kbd></th><td>Hologramm drehen (Shift = schnell); sonst h = zurück, l = öffnen</td></tr>
+            <tr><th><kbd>Enter</kbd></th><td>öffnen</td></tr>
+            <tr><th><kbd>Esc</kbd> <kbd>Backspace</kbd></th><td>zurück / Befehlszeile verlassen</td></tr>
+            <tr><th><kbd>1</kbd>–<kbd>9</kbd></th><td>zu Listeneintrag springen</td></tr>
+            <tr><th><kbd>/</kbd> <kbd>:</kbd></th><td>Befehlszeile (Tab vervollständigt, ↑ Verlauf)</td></tr>
+            <tr><th><kbd>+</kbd> <kbd>−</kbd> <kbd>Space</kbd></th><td>Hologramm Zoom / Drehung an-aus</td></tr>
+            <tr><th><kbd>t</kbd></th><td>Theme dunkel ⇄ hell</td></tr>
+            <tr><th><kbd>g</kbd></th><td>Sprache EN ⇄ DE (wechselt /en/ ⇄ /de/)</td></tr>
+            <tr><th><kbd>?</kbd></th><td>diese Hilfe</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <caption>Befehle</caption>
+          <tbody>
+            <tr><th><code>help</code> <code>ls</code> <code>clear</code></th><td>Hilfeseite · Ordner listen · Ausgabe leeren</td></tr>
+            <tr><th><code>cd &lt;dir&gt;</code> <code>cd ..</code></th><td>Ordner wechseln (about, projects, contact, files, legal)</td></tr>
+            <tr><th><code>cat about</code> <code>cat &lt;slug&gt;/summary</code></th><td>Seite oder Projekt-Zusammenfassung lesen</td></tr>
+            <tr><th><code>open &lt;slug&gt;</code></th><td>Projekt öffnen</td></tr>
+            <tr><th><code>theme dark|light</code> <code>lang en|de</code></th><td>Theme / Sprache wechseln</td></tr>
+            <tr><th><code>holo on|off</code> <code>motion on|off</code></th><td>Hologramm / jede Bewegung</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+</dialog>
+
+<template id="t-holo">
+  <div class="stage" role="img" aria-label="Hologramm (3D-Modell)">
+    <div class="ring"></div>
+    <div class="rot"><div class="spin"><div class="cube">
+      <i class="f fr"></i><i class="f bk"></i><i class="f lf"></i><i class="f rt"></i><i class="f tp"></i><i class="f bt"></i>
+    </div></div></div>
+    <pre class="sil" aria-hidden="true">  .---.
+ /   /|
+.---. |
+|   | '
+'---'/</pre>
+    <span class="scan"></span>
+    <span class="tag">GLB</span>
+  </div>
+</template>
+
+<script src="../../../assets/js/grass.js"></script>
+<script type="module" src="../../../assets/js/app.js"></script>
+</body>
+</html>

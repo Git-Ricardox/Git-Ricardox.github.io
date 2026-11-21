@@ -1,0 +1,3 @@
+Model: sv08_3d_drucker
+Simplified procedural geometry (Primitives).
+Objects: 4

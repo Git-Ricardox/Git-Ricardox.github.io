@@ -1,0 +1,10 @@
+shots/
+*.log
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+.venv/
+.idea/
+.vscode/
+*.swp

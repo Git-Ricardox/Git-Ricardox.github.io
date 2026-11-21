@@ -1,0 +1,3 @@
+Model: veggie_scanner
+Simplified procedural geometry (Primitives).
+Objects: 3

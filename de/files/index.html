@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>thoughtfullycomplicateded — ~/files</title>
+<meta name="description" content="Dateien zum Download auf externen Plattformen.">
+<link rel="canonical" href="https://thoughtfullycomplicateded.com/de/files/">
+<link rel="alternate" hreflang="de" href="https://thoughtfullycomplicateded.com/de/files/">
+<link rel="alternate" hreflang="en" href="https://thoughtfullycomplicateded.com/en/files/">
+<link rel="alternate" hreflang="x-default" href="https://thoughtfullycomplicateded.com/en/files/">
+<meta property="og:title" content="thoughtfullycomplicateded — ~/files">
+<meta property="og:description" content="Dateien zum Download auf externen Plattformen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thoughtfullycomplicateded.com/de/files/">
+<meta property="og:image" content="https://thoughtfullycomplicateded.com/assets/video-graphics/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tc-theme');if(t==='light')document.documentElement.dataset.theme='light';localStorage.setItem('tc-lang','de')}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt</a>
+
+<div class="term" id="term">
+
+  <header class="bar">
+    <a class="ps1" href="../../de/" aria-label="Startseite"><span class="u">guest</span>@<b>thoughtfullycomplicateded</b>:<span class="cwd" id="cwd">~/files</span>$</a>
+    <span class="ctl">
+      <a id="b-lang" class="btn" href="../../en/files/" hreflang="en" lang="en" aria-label="English" title="g">[EN|<b>DE</b>]</a>
+      <button type="button" id="b-theme" class="js-only" aria-label="Theme" title="t">[theme: <b>dark</b>]</button>
+      <a id="b-help" class="btn" href="../../de/help/" aria-label="Hilfe" title="?">[?]</a>
+    </span>
+  </header>
+
+  <main id="main" tabindex="-1" data-lang="de" data-route="files">
+    <section class="view" id="v-files">
+      <h1><span class="pfx">#</span> files</h1>
+      <p class="prose">Kein Shop hier. Modelle liegen auf externen Plattformen (Preis frei wählbar); diese Seite verlinkt nur. Noch ist nichts veröffentlicht.</p>
+      <ul class="list" data-list>
+        <li><a href="https://www.printables.com/" rel="noopener"><span class="n">1</span><span class="nm">printables</span><span class="d">printables.com/@&lt;account&gt;</span></a></li>
+        <li><a href="https://cults3d.com/" rel="noopener"><span class="n">2</span><span class="nm">cults3d</span><span class="d">cults3d.com/@&lt;account&gt;</span></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="log" class="js-only" role="log" aria-live="polite" aria-label="Terminal output"></div>
+  <form id="cmd" class="js-only" autocomplete="off">
+    <label for="in" class="ps1">$</label>
+    <input id="in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder="tippe help …">
+    <span class="hint" aria-hidden="true">/ · ? · Esc</span>
+  </form>
+
+  <nav class="pad js-only" aria-label="Touch keys">
+    <button type="button" data-k="ArrowLeft" aria-label="Left">←</button>
+    <button type="button" data-k="ArrowUp" aria-label="Up">↑</button>
+    <button type="button" data-k="ArrowDown" aria-label="Down">↓</button>
+    <button type="button" data-k="ArrowRight" aria-label="Right">→</button>
+    <button type="button" data-k="Enter" class="wide" aria-label="Enter">⏎</button>
+    <button type="button" data-k="Escape" aria-label="Back">esc</button>
+    <button type="button" data-k="/" aria-label="Command line">/</button>
+  </nav>
+
+  <footer class="grass" aria-hidden="true"><pre id="grass"></pre></footer>
+</div>
+
+<dialog id="dlg" aria-label="Hilfe">
+  <div class="dlg-h"><b>? help</b><button type="button" id="dlg-x" aria-label="Schließen">[esc]</button></div>
+  <div id="dlg-body"><div class="keys">
+        <table>
+          <caption>Tasten</caption>
+          <tbody>
+            <tr><th><kbd>↑</kbd> <kbd>↓</kbd> <kbd>j</kbd> <kbd>k</kbd></th><td>wählen / scrollen</td></tr>
+            <tr><th><kbd>←</kbd> <kbd>→</kbd> <kbd>h</kbd> <kbd>l</kbd></th><td>Hologramm drehen (Shift = schnell); sonst h = zurück, l = öffnen</td></tr>
+            <tr><th><kbd>Enter</kbd></th><td>öffnen</td></tr>
+            <tr><th><kbd>Esc</kbd> <kbd>Backspace</kbd></th><td>zurück / Befehlszeile verlassen</td></tr>
+            <tr><th><kbd>1</kbd>–<kbd>9</kbd></th><td>zu Listeneintrag springen</td></tr>
+            <tr><th><kbd>/</kbd> <kbd>:</kbd></th><td>Befehlszeile (Tab vervollständigt, ↑ Verlauf)</td></tr>
+            <tr><th><kbd>+</kbd> <kbd>−</kbd> <kbd>Space</kbd></th><td>Hologramm Zoom / Drehung an-aus</td></tr>
+            <tr><th><kbd>t</kbd></th><td>Theme dunkel ⇄ hell</td></tr>
+            <tr><th><kbd>g</kbd></th><td>Sprache EN ⇄ DE (wechselt /en/ ⇄ /de/)</td></tr>
+            <tr><th><kbd>?</kbd></th><td>diese Hilfe</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <caption>Befehle</caption>
+          <tbody>
+            <tr><th><code>help</code> <code>ls</code> <code>clear</code></th><td>Hilfeseite · Ordner listen · Ausgabe leeren</td></tr>
+            <tr><th><code>cd &lt;dir&gt;</code> <code>cd ..</code></th><td>Ordner wechseln (about, projects, contact, files, legal)</td></tr>
+            <tr><th><code>cat about</code> <code>cat &lt;slug&gt;/summary</code></th><td>Seite oder Projekt-Zusammenfassung lesen</td></tr>
+            <tr><th><code>open &lt;slug&gt;</code></th><td>Projekt öffnen</td></tr>
+            <tr><th><code>theme dark|light</code> <code>lang en|de</code></th><td>Theme / Sprache wechseln</td></tr>
+            <tr><th><code>holo on|off</code> <code>motion on|off</code></th><td>Hologramm / jede Bewegung</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+</dialog>
+
+<template id="t-holo">
+  <div class="stage" role="img" aria-label="Hologramm (3D-Modell)">
+    <div class="ring"></div>
+    <div class="rot"><div class="spin"><div class="cube">
+      <i class="f fr"></i><i class="f bk"></i><i class="f lf"></i><i class="f rt"></i><i class="f tp"></i><i class="f bt"></i>
+    </div></div></div>
+    <pre class="sil" aria-hidden="true">  .---.
+ /   /|
+.---. |
+|   | '
+'---'/</pre>
+    <span class="scan"></span>
+    <span class="tag">GLB</span>
+  </div>
+</template>
+
+<script src="../../assets/js/grass.js"></script>
+<script type="module" src="../../assets/js/app.js"></script>
+</body>
+</html>

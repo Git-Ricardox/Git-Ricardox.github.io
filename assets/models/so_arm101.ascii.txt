@@ -1,0 +1,3 @@
+Model: so_arm101
+Simplified procedural geometry (Primitives).
+Objects: 3

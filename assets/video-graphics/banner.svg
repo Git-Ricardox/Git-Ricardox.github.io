@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2560" height="1440" viewBox="0 0 2560 1440" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="2560" height="1440" fill="#0b1220"/>
+  
+  <!-- Safe zone (centered, 1546×423) -->
+  <rect x="507" y="508.5" width="1546" height="423" fill="#070d18" stroke="#2a3750" stroke-width="2"/>
+  
+  <!-- Main motivational text: "das Einfache klein, das Überbaute groß" -->
+  <text x="1280" y="850" font-family="IBM Plex Mono, JetBrains Mono, monospace" font-size="120" font-weight="600" fill="#97d68c" text-anchor="middle" dominant-baseline="middle">
+    das Einfache klein, das Überbaute groß
+  </text>
+  
+  <!-- ASCII grass at bottom -->
+  <g fill="#2a3750">
+    <line x1="0" y1="1420" x2="2560" y2="1420" stroke-width="1"/>
+    <line x1="0" y1="1430" x2="2560" y2="1430" stroke-width="1"/>
+    <line x1="0" y1="1440" x2="2560" y2="1440" stroke-width="1"/>
+    <line x1="100" y1="1425" x2="120" y2="1425" stroke-width="2"/>
+    <line x1="200" y1="1410" x2="220" y2="1410" stroke-width="2"/>
+    <line x1="350" y1="1435" x2="370" y2="1435" stroke-width="2"/>
+    <line x1="500" y1="1420" x2="520" y2="1420" stroke-width="2"/>
+    <line x1="650" y1="1430" x2="670" y2="1430" stroke-width="2"/>
+    <line x1="800" y1="1425" x2="820" y2="1425" stroke-width="2"/>
+    <line x1="950" y1="1415" x2="970" y2="1415" stroke-width="2"/>
+    <line x1="1100" y1="1435" x2="1120" y2="1435" stroke-width="2"/>
+    <line x1="1250" y1="1420" x2="1270" y2="1420" stroke-width="2"/>
+    <line x1="1400" y1="1410" x2="1420" y2="1410" stroke-width="2"/>
+    <line x1="1550" y1="1430" x2="1570" y2="1430" stroke-width="2"/>
+    <line x1="1700" y1="1425" x2="1720" y2="1425" stroke-width="2"/>
+    <line x1="1850" y1="1415" x2="1870" y2="1415" stroke-width="2"/>
+    <line x1="2000" y1="1430" x2="2020" y2="1430" stroke-width="2"/>
+    <line x1="2150" y1="1420" x2="2170" y2="1420" stroke-width="2"/>
+    <line x1="2300" y1="1410" x2="2320" y2="1410" stroke-width="2"/>
+    <line x1="2450" y1="1425" x2="2470" y2="1425" stroke-width="2"/>
+  </g>
+  
+  <!-- Mascot sprout at cursor position (small) -->
+  <g fill="#97d68c" transform="translate(2400, 120)">
+    <circle cx="0" cy="0" r="8" stroke="#2a3750" stroke-width="1"/>
+    <line x1="0" y1="-12" x2="0" y2="-8" stroke="#97d68c" stroke-width="2"/>
+    <line x1="-8" y1="-8" x2="8" y2="-8" stroke="#97d68c" stroke-width="1"/>
+    <ellipse cx="0" cy="-4" rx="3" ry="6" fill="#97d68c"/>
+  </g>
+  
+  <!-- Wortmarke placeholder - exchangeable text field -->
+  <rect x="50" y="50" width="200" height="80" fill="none" stroke="#7db7f7" stroke-width="3" rx="4"/>
+  <text x="150" y="90" font-family="IBM Plex Mono, JetBrains Mono, monospace" font-size="24" font-weight="500" fill="#7db7f7" text-anchor="middle" dominant-baseline="middle">
+    [NAME]
+  </text>
+</svg>

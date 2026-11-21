@@ -1,0 +1,97 @@
+{
+  "slug": "tram-uhr",
+  "video": "V2",
+  "datum": "2026-11-10",
+  "titel_en": "Tram departure clock",
+  "titel_de": "Tram-Abfahrtsuhr",
+  "pillar": "ESP32",
+  "tag": "clock",
+  "status": "design",
+  "dims_mm": [
+    318,
+    160,
+    80
+  ],
+  "holo": {
+    "glb": "tram_uhr.glb",
+    "png": "tram_uhr.png",
+    "ascii": "tram_uhr.ascii.txt",
+    "label_en": "Tram departure clock (simplified model)",
+    "label_de": "Tram-Abfahrtsuhr (vereinfachtes Modell)"
+  },
+  "video_info": {
+    "youtube_id": null,
+    "titel_en": "My Tram Left 20 Seconds Early. So I Built a Wall Clock That Knows.",
+    "dauer": null,
+    "status": "Idee/Konzept"
+  },
+  "files": {
+    "cults3d_url": null,
+    "printables_url": null,
+    "pwyw": true,
+    "github_url": null
+  },
+  "bom": [
+    {
+      "qty": 1,
+      "teil_en": "7\" display board ESP32-8048S070C (ESP32-S3, 800×480)",
+      "teil_de": "7\"-Komplettboard ESP32-8048S070C (ESP32-S3, 800×480)",
+      "preis_eur": 37.25,
+      "status": "verified",
+      "url": "https://www.tinytronics.nl/en/development-boards/microcontroller-boards/with-wi-fi/jingcai-esp32-8048s070c-7-inch-tft-lcd-display-800*480-pixels-with-touchscreen-esp32-s3",
+      "abgerufen": "2026-11-20"
+    },
+    {
+      "qty": 1,
+      "teil_en": "Quartz clock movement + hands",
+      "teil_de": "Quarz-Uhrwerk + Zeiger",
+      "preis_eur": 8.91,
+      "status": "verified",
+      "url": "https://agelektronik.de/906-uhr-werke-funkanalogquarz",
+      "abgerufen": "2026-11-20"
+    },
+    {
+      "qty": 1,
+      "teil_en": "USB-C socket / cable",
+      "teil_de": "USB-C-Buchse/Kabel",
+      "preis_eur": 2.5,
+      "status": "verified",
+      "url": "https://agelektronik.de/1059-usb-",
+      "abgerufen": "2026-11-20"
+    },
+    {
+      "qty": 1,
+      "teil_en": "Small parts (screws, filament)",
+      "teil_de": "Kleinteile (Schrauben, Filament)",
+      "preis_eur": 8.0,
+      "status": "estimate",
+      "hinweis_en": "sourced locally, no shop reference",
+      "hinweis_de": "lokal beschafft, ohne Shop-Referenz"
+    }
+  ],
+  "kurz_en": "A wall clock that shows when the next tram leaves: live departures on the front, a quartz analogue clock on the back.",
+  "kurz_de": "Eine Wanduhr, die zeigt, wann die nächste Tram fährt: vorn Echtzeit-Abfahrten, hinten eine Quarz-Analoguhr.",
+  "beschreibung_en": "A wall device (318 × 160 × 80 mm) for Rostock, stop Kabutzenhof. The front carries a 7\" display with real-time departures from the VMV-EFA API (stop de:13003:804, lines 1 and 5, refresh every 30 s, red \"+N\" for delays, cancelled trips struck through). The back carries a quartz analogue clock. The housing has three printed parts and no glue: a body with ribs as tongue and groove for display and dial, a wall block with dovetail and detent bumps, and a wall plate (two countersunk 4 mm screws). Slide it on from above, pull it off upwards. Status: design only. Nothing printed yet, firmware untested, board dimensions still to be measured on the delivered unit. Any EFA city can be ported.",
+  "beschreibung_de": "Ein Wandgerät (318 × 160 × 80 mm) für Rostock, Haltestelle Kabutzenhof. Vorn ein 7\"-Display mit Echtzeit-Abfahrten aus der VMV-EFA-Schnittstelle (Haltestelle de:13003:804, Linien 1 und 5, Abruf alle 30 s, rotes „+N\" bei Verspätung, Ausfälle durchgestrichen). Hinten eine Quarz-Analoguhr. Das Gehäuse besteht aus drei gedruckten Teilen ohne Kleben: Gehäuse mit Rippen als Nut/Feder für Display und Zifferblatt, Wandblock mit Schwalbenschwanz und Rastnoppen, Wandplatte (zwei Senkschrauben 4 mm). Von oben einschieben, nach oben abziehen. Stand: nur Entwurf. Nichts gedruckt, Firmware ungetestet, Board-Maße am gelieferten Gerät noch zu messen. Jede EFA-Stadt lässt sich portieren.",
+  "log": [
+    {
+      "datum": "2026-11-10",
+      "en": "Design drafted: 3-part housing, board and data source chosen. Nothing printed, firmware untested.",
+      "de": "Entwurf: 3-teiliges Gehäuse, Board und Datenquelle gewählt. Nichts gedruckt, Firmware ungetestet."
+    },
+    {
+      "datum": "2026-11-19",
+      "en": "Checked the stop: Kabutzenhof is mainly a ferry pier (RSAG); the ferry runs daily, so departures are not limited to evenings.",
+      "de": "Haltestelle geprüft: Kabutzenhof ist primär ein Fähranleger (RSAG); die Fähre fährt täglich, Abfahrten sind also nicht auf Abende beschränkt."
+    },
+    {
+      "datum": "2026-11-20",
+      "en": "Parts prices verified against shops: 48.66 € confirmed, 8.00 € estimated.",
+      "de": "Teilepreise gegen Shops geprüft: 48,66 € belegt, 8,00 € geschätzt."
+    }
+  ],
+  "quellen": [
+    "Tram-Abfahrtsuhr.md (Stand 10.11. + Preisprüfung 2026-11-20)",
+    "00-Mindmap-Sketch.md V2"
+  ]
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SV08 coat hook — thoughtfullycomplicateded</title>
+<meta name="description" content="A coat hook that wobbles, a €3 fix at the hardware store, and one printer calibrated far too thoroughly to print it.">
+<link rel="canonical" href="https://thoughtfullycomplicateded.com/en/projects/sv08-haken/">
+<link rel="alternate" hreflang="en" href="https://thoughtfullycomplicateded.com/en/projects/sv08-haken/">
+<link rel="alternate" hreflang="de" href="https://thoughtfullycomplicateded.com/de/projects/sv08-haken/">
+<link rel="alternate" hreflang="x-default" href="https://thoughtfullycomplicateded.com/en/projects/sv08-haken/">
+<meta property="og:title" content="SV08 coat hook — thoughtfullycomplicateded">
+<meta property="og:description" content="A coat hook that wobbles, a €3 fix at the hardware store, and one printer calibrated far too thoroughly to print it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thoughtfullycomplicateded.com/en/projects/sv08-haken/">
+<meta property="og:image" content="https://thoughtfullycomplicateded.com/assets/video-graphics/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../../assets/tokens.css">
+<link rel="stylesheet" href="../../../assets/css/style.css">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('tc-theme');if(t==='light')document.documentElement.dataset.theme='light';localStorage.setItem('tc-lang','en')}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="term" id="term">
+
+  <header class="bar">
+    <a class="ps1" href="../../../en/" aria-label="Home"><span class="u">guest</span>@<b>thoughtfullycomplicateded</b>:<span class="cwd" id="cwd">~/projects/sv08-haken</span>$</a>
+    <span class="ctl">
+      <a id="b-lang" class="btn" href="../../../de/projects/sv08-haken/" hreflang="de" lang="de" aria-label="Deutsch" title="g">[<b>EN</b>|DE]</a>
+      <button type="button" id="b-theme" class="js-only" aria-label="Theme" title="t">[theme: <b>dark</b>]</button>
+      <a id="b-help" class="btn" href="../../../en/help/" aria-label="Help" title="?">[?]</a>
+    </span>
+  </header>
+
+  <main id="main" tabindex="-1" data-lang="en" data-route="projects/sv08-haken">
+    <section class="view" id="v-project" data-slug="sv08-haken" data-w="60" data-h="90" data-d="36">
+      <h1><span class="pfx">#</span> SV08 coat hook</h1>
+      <p class="meta"><span class="chip">print</span><span class="chip">3D-Druck</span> status: planned · V1 · 2026-11-10</p>
+      <div class="split proj-top">
+        <div class="box holo-box"><h2 class="t">HOLO</h2>
+          <div class="slot" data-holo data-holo-keys="host" data-glb="../../../assets/models/sv08_3d_drucker.glb" data-poster="../../../assets/models/sv08_3d_drucker.png" data-ascii="../../../assets/models/sv08_3d_drucker.ascii.txt"></div>
+          <p class="cap"><kbd>←</kbd><kbd>→</kbd> rotate · Sovol SV08 (simplified model)</p>
+        </div>
+        <div class="prose"><p id="pj-sum">My coat hook wobbles, and one day a jacket will end up on the floor. The sane fix costs three euros at the hardware store. Instead, I calibrate the whole machine first: a Sovol SV08 with Eddy sensor, Klipper mainline + eddy-ng, sliced in OrcaSlicer. Temperature, flow, pressure advance, retraction and input shaper get measured and written down, then one hook is printed. Status: the printer is calibrated and documented; the hook itself is not designed or printed yet. Numbers that depend on the hook (print time, grams, number of test prints) are filled in after printing, never guessed.</p></div>
+      </div>
+      <h2><span class="pfx">##</span> video</h2>
+      <div class="ph video"><span>Video not published yet · status: Drehbuch-Entwurf</span></div>
+      <p class="muted">Working title: <i>I Calibrated a 3D Printer for Days to Print a €3 Coat Hook</i> · 9:04</p>
+      <h2><span class="pfx">##</span> BOM</h2>
+      <table class="bom"><thead><tr><th>qty</th><th>part</th><th>€</th><th>status</th></tr></thead>
+        <tbody><tr><td>1</td><td>Sovol SV08 with Eddy sensor (already owned) <span class="muted">(Eddy sensor approx. 80 €, already installed)</span></td><td>80.00</td><td>owned</td></tr><tr><td>1</td><td>PLA filament <span class="muted">(Hook weight and cost measured after printing)</span></td><td>—</td><td>open</td></tr></tbody></table>
+      <p class="muted">No sourced prices yet — they follow once the parts are chosen.</p>
+      <h2><span class="pfx">##</span> files</h2>
+      <p class="muted">Not published yet. The files go to Cults3D / Printables (pay what you want) once the build works.</p>
+      <h2><span class="pfx">##</span> build-log</h2>
+      <dl class="log"><dt>2026-11-10</dt><dd>Benchy edges and bridges look wrong. Root cause found: the front part-cooling fan does not spin (rear one does).</dd><dt>2026-11-11</dt><dd>Belts retensioned, input shaper redone: X MZV 62.8 Hz, Y MZV 43.8 Hz. Pressure advance 0.040, PLA flow 0.93.</dd><dt>2026-11-11</dt><dd>Extruder will not load: PLA was loaded with a cold nozzle (163 °C) and jammed. Fix: heat to 230 °C, extrude slowly. Rule: never load PLA below about 220 °C.</dd></dl>
+      <p class="tip"><kbd>Esc</kbd> back to list · <kbd>j</kbd><kbd>k</kbd> scroll</p>
+    </section>
+  </main>
+
+  <div id="log" class="js-only" role="log" aria-live="polite" aria-label="Terminal output"></div>
+  <form id="cmd" class="js-only" autocomplete="off">
+    <label for="in" class="ps1">$</label>
+    <input id="in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" placeholder="type help …">
+    <span class="hint" aria-hidden="true">/ · ? · Esc</span>
+  </form>
+
+  <nav class="pad js-only" aria-label="Touch keys">
+    <button type="button" data-k="ArrowLeft" aria-label="Left">←</button>
+    <button type="button" data-k="ArrowUp" aria-label="Up">↑</button>
+    <button type="button" data-k="ArrowDown" aria-label="Down">↓</button>
+    <button type="button" data-k="ArrowRight" aria-label="Right">→</button>
+    <button type="button" data-k="Enter" class="wide" aria-label="Enter">⏎</button>
+    <button type="button" data-k="Escape" aria-label="Back">esc</button>
+    <button type="button" data-k="/" aria-label="Command line">/</button>
+  </nav>
+
+  <footer class="grass" aria-hidden="true"><pre id="grass"></pre></footer>
+</div>
+
+<dialog id="dlg" aria-label="Help">
+  <div class="dlg-h"><b>? help</b><button type="button" id="dlg-x" aria-label="Close">[esc]</button></div>
+  <div id="dlg-body"><div class="keys">
+        <table>
+          <caption>Keys</caption>
+          <tbody>
+            <tr><th><kbd>↑</kbd> <kbd>↓</kbd> <kbd>j</kbd> <kbd>k</kbd></th><td>choose / scroll</td></tr>
+            <tr><th><kbd>←</kbd> <kbd>→</kbd> <kbd>h</kbd> <kbd>l</kbd></th><td>rotate hologram (Shift = fast); elsewhere h = back, l = open</td></tr>
+            <tr><th><kbd>Enter</kbd></th><td>open</td></tr>
+            <tr><th><kbd>Esc</kbd> <kbd>Backspace</kbd></th><td>back / leave command line</td></tr>
+            <tr><th><kbd>1</kbd>–<kbd>9</kbd></th><td>jump to list entry</td></tr>
+            <tr><th><kbd>/</kbd> <kbd>:</kbd></th><td>command line (Tab completes, ↑ history)</td></tr>
+            <tr><th><kbd>+</kbd> <kbd>−</kbd> <kbd>Space</kbd></th><td>hologram zoom / spin on-off</td></tr>
+            <tr><th><kbd>t</kbd></th><td>theme dark ⇄ light</td></tr>
+            <tr><th><kbd>g</kbd></th><td>language EN ⇄ DE (switches /en/ ⇄ /de/)</td></tr>
+            <tr><th><kbd>?</kbd></th><td>this help</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <caption>Commands</caption>
+          <tbody>
+            <tr><th><code>help</code> <code>ls</code> <code>clear</code></th><td>help page · list folder · clear output</td></tr>
+            <tr><th><code>cd &lt;dir&gt;</code> <code>cd ..</code></th><td>change folder (about, projects, contact, files, legal)</td></tr>
+            <tr><th><code>cat about</code> <code>cat &lt;slug&gt;/summary</code></th><td>read a page or a project summary</td></tr>
+            <tr><th><code>open &lt;slug&gt;</code></th><td>open a project</td></tr>
+            <tr><th><code>theme dark|light</code> <code>lang en|de</code></th><td>switch theme / language</td></tr>
+            <tr><th><code>holo on|off</code> <code>motion on|off</code></th><td>hologram / all motion</td></tr>
+          </tbody>
+        </table>
+      </div></div>
+</dialog>
+
+<template id="t-holo">
+  <div class="stage" role="img" aria-label="Hologram (3D model)">
+    <div class="ring"></div>
+    <div class="rot"><div class="spin"><div class="cube">
+      <i class="f fr"></i><i class="f bk"></i><i class="f lf"></i><i class="f rt"></i><i class="f tp"></i><i class="f bt"></i>
+    </div></div></div>
+    <pre class="sil" aria-hidden="true">  .---.
+ /   /|
+.---. |
+|   | '
+'---'/</pre>
+    <span class="scan"></span>
+    <span class="tag">GLB</span>
+  </div>
+</template>
+
+<script src="../../../assets/js/grass.js"></script>
+<script type="module" src="../../../assets/js/app.js"></script>
+</body>
+</html>
